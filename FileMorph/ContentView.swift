@@ -1,24 +1,40 @@
-//
-//  ContentView.swift
-//  FileMorph
-//
-//  Created by Aniruddha on 18/03/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var inputFilePath: String = ""
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("Universal File Converter")
+                .font(.largeTitle)
+                .padding()
+            
+            if !inputFilePath.isEmpty {
+                Text("Selected File: \(inputFilePath)")
+                    .padding()
+                
+                Button("Convert to JPEG") {
+                    convertImage(to: "jpg")
+                }
+                .padding()
+            }
         }
-        .padding()
+        .onAppear {
+            if let filePath = CommandLine.arguments.dropFirst().first {
+                self.inputFilePath = filePath
+            }
+        }
     }
-}
-
-#Preview {
-    ContentView()
+    
+    func convertImage(to format: String) {
+        let inputURL = URL(fileURLWithPath: inputFilePath)
+        let outputURL = inputURL.deletingPathExtension().appendingPathExtension(format)
+        
+        if let image = NSImage(contentsOf: inputURL),
+           let tiffData = image.tiffRepresentation,
+           let bitmap = NSBitmapImageRep(data: tiffData),
+           let outputData = bitmap.representation(using: .jpeg, properties: [:]) {
+            try? outputData.write(to: outputURL)
+        }
+    }
 }

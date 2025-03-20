@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+
+    <key>CFBundleIdentifier</key>
+    <string>com.eulerlabs.filemorph</string>
+
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+
+    <key>CFBundleName</key>
+    <string>filemorph</string>
+
+    <key>CFBundleDisplayName</key>
+    <string>Universal Converter</string>
+
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+
+    <key>CFBundleVersion</key>
+    <string>1</string>
+
+    <key>LSMinimumSystemVersion</key>
+    <string>10.15</string> <!-- Minimum macOS version -->
+
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+
+    <!-- ✅ App Sandbox for security -->
+    <key>App Sandbox</key>
+    <true/>
+
+    <!-- ✅ Enable App Groups to communicate with Finder Sync Extension -->
+    <key>com.apple.security.application-groups</key>
+    <array>
+        <string>group.com.eulerlabs.filemorph</string>
+    </array>
+
+    <!-- ✅ Finder Sync Extension declaration -->
+    <key>NSExtensions</key>
+    <array>
+        <dict>
+            <key>NSExtensionPointIdentifier</key>
+            <string>com.apple.findersync</string>
+            <key>NSExtensionPrincipalClass</key>
+            <string>FinderSyncExtension</string>
+        </dict>
+    </array>
+
+    <!-- ✅ Privacy settings (modify if needed) -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app needs access to the photo library to save converted images.</string>
+
+    <key>NSDownloadsFolderUsageDescription</key>
+    <string>This app needs access to the Downloads folder to store converted files.</string>
+
+    <key>NSSupportsAutomaticGraphicsSwitching</key>
+    <true/>
+</dict>
+</plist>
